@@ -153,6 +153,7 @@ docker run --rm  -v $SAMPLES_LOCAL:$SAMPLES_DOCKER -v $RESULTS_LOCAL:$RESULTS_DO
 <figcaption>osvaldogc/ufv:2.0 initial screen</figcaption>
 </center>
 </figure>
+
 ### 2.3. Software Requisites
 
 We are going to use the next software packages (already installed in our Docker image) to run the tutorial.
