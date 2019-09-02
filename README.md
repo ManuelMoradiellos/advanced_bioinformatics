@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-* Navigate into the [folder](#class-2) of **Class 2: Introduction to the Linux command line, NGS data formats, read mapping and alignments** or [download it here]().
-* [Hands On: Transcriptome Assembly: Case study of bacteria *Listeria monocytogenes*]([#hands-on](https://github.com/fpozoc/advanced_bioinformatics/tree/master/handson#transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes))
+* **Class 2: Introduction to the Linux command line, NGS data formats, read mapping and alignments**. [Download in PDF](https://github.com/fpozoc/advanced_bioinformatics/raw/master/theory/advbio_theory_fpozo.pdf).
+* [Hands On: Transcriptome Assembly: Case study of bacteria *Listeria monocytogenes*]([#hands-on](https://github.com/fpozoc/advanced_bioinformatics/tree/master/handson#transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes)). [Download in PDF](https://github.com/fpozoc/advanced_bioinformatics/raw/master/theory/advbio_theory_fpozo.pdf).
 * [Docker Image](#docker-image)
 * [Author](#author)
 * [Contributing](#contributing)

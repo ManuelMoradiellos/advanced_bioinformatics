@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>README.md</title>
+<title>lmonocytogenes_transcriptome_assembly.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -386,34 +386,56 @@ blockquote {
 </head>
 <body>
 <h1 id="transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes">Transcriptome Assembly: Case study of bacteria <em>Listeria monocytogenes</em></h1>
-<h2 id="table-of-contents">Table of Contents</h2>
-<ol>
-<li><a href="#setting-up">Setting up our working environment</a>
-1.1. <a href="#organism-of-interest">Organism of interest: <em>Listeria monocytogenes</em></a>
-1.2. <a href="#sequencing">Sequencing data: How to get it</a>
-1.3. <a href="#downloading">Downloading our samples</a></li>
-<li><a href="#how-to-run">How to run this tutorial</a>
-2.1. <a href="#first-steps">First steps with Docker</a>
-2.2. <a href="#configuring">Configuring our Docker container</a>
-2.3. <a href="#software-Requisites">Software Requisites</a></li>
-<li><a href="#data-preprocesing">Data preprocesing</a>
-3.1. <a href="#quality">Quality control with FastQC</a>
-3.2. <a href="#analysis">Analysis of FastQC results</a>
-3.3. <a href="#trimming">Trimming reads  with Trimmomatic</a></li>
-<li><a href="#read-mapping">Read mapping to a reference genome</a>
-4.1. <a href="#build-an-index-and-read-mapping-with-bowtie-2">Build an index and read mapping with Bowtie 2</a>
-4.2. <a href="#converting-and-sorting">Converting and sorting reads with Samtools</a>
-4.3. [Trimming reads  with Trimmomatic](#trimming reads)</li>
-<li><a href="#transcriptome-assembly">Transcriptome Assembly with Stringtie</a></li>
-</ol>
+<ul>
+<li><a href="#transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes">Transcriptome Assembly: Case study of bacteria <em>Listeria monocytogenes</em></a>
+<ul>
+<li><a href="#1-setting-up-our-working-environment">1. Setting up our working environment</a>
+<ul>
+<li><a href="#11-organism-of-interest-listeria-monocytogenes">1.1. Organism of interest: <em>Listeria monocytogenes</em></a></li>
+<li><a href="#12-sequencing-data-how-to-get-it">1.2. Sequencing data: How to get it</a></li>
+<li><a href="#13-downloading-our-samples">1.3. Downloading our samples</a></li>
+</ul>
+</li>
+<li><a href="#2-how-to-run-this-tutorial">2. How to run this tutorial</a>
+<ul>
+<li><a href="#21-first-steps-with-docker">2.1. First steps with Docker</a></li>
+<li><a href="#22-configuring-our-docker-container">2.2. Configuring our Docker container</a></li>
+<li><a href="#23-software-requisites">2.3. Software Requisites</a></li>
+</ul>
+</li>
+<li><a href="#3-data-preprocesing">3. Data preprocesing</a>
+<ul>
+<li><a href="#31-quality-control-with-fastqc">3.1. Quality control with FastQC</a></li>
+<li><a href="#32-analysis-of-fastqc-results">3.2. Analysis of FastQC results</a></li>
+<li><a href="#33-trimming-reads-with-trimmomatic">3.3. Trimming reads with Trimmomatic</a></li>
+</ul>
+</li>
+<li><a href="#4-read-mapping-to-a-reference-genome">4. Read mapping to a reference genome</a>
+<ul>
+<li><a href="#41-build-an-index-and-read-mapping-with-bowtie-2">4.1. Build an index and read mapping with Bowtie 2</a></li>
+<li><a href="#42-converting-and-sorting-reads-with-samtools">4.2. Converting and sorting reads with Samtools</a></li>
+</ul>
+</li>
+<li><a href="#5-transcriptome-assembly-with-stringtie">5. Transcriptome Assembly with Stringtie</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Note</strong></p>
+<p>All the links are <a href="https://github.com/fpozoc/advanced_bioinformatics/tree/master/handson#transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes">clickable</a>. They contain references, databases and interesting sources to know more about our pipeline.</p>
+<hr>
 <h2 id="1-setting-up-our-working-environment">1. Setting up our working environment</h2>
 <p><strong>DNA sequencing</strong> is the process of determining the nucleic acid sequence – the order of nucleotides in DNA. It includes any method or technology that is used to determine the order of the four bases: adenine, guanine, cytosine, and thymine. The advent of rapid DNA sequencing methods has greatly accelerated biological and medical research and discovery.</p>
 <p>The massively parallel sequencing technology known as <strong>next-generation sequencing (NGS)</strong> has revolutionized the biological sciences. With its ultra-high throughput, scalability, and speed, NGS enables researchers to perform a wide variety of applications and study biological systems at a level never before possible.</p>
 <h3 id="11-organism-of-interest-listeria-monocytogenes">1.1. Organism of interest: <em>Listeria monocytogenes</em></h3>
 <p>For this tutorial, we are going to use data of RNA sequencing from bacteria <a href="https://www.ncbi.nlm.nih.gov/genome/?term=Listeria+monocytogenes+EGD-e+genome"><em>Listeria monocytogenes</em></a>, a food-borne pathogen responsible for listerioris, a sickness with a high mortality rate, which recently leads an <a href="https://www.forbes.com/sites/anagarciavaldivia/2019/08/23/health-alert-in-spain-listeriosis-outbreak-affects-168-people/#25662d682680">outbreak</a> in Spain.</p>
 <p>The genome sequences of several Listeria species have opened a new era in the study of Listeria. These postgenomic studies, comparing pathogenic strains of <em>L. monocytogenes</em>, have led to the discovery of new virulence factors. Postgenomic studies have also helped us to understand how Listeria survives in a variety of different environments.</p>
-<center><img src="images/listeria.jpg" alt="drawing" width="500"/></center>
-<center><i>L. monocytogenes</i> is one of the most virulent foodborne pathogens</center>
+<figure>
+<center>
+<img src="images/listeria.jpg" alt="drawing" width="500"/>
+<figcaption><i>L. monocytogenes</i> is one of the most virulent foodborne pathogens</figcaption>
+</center>
+</figure>
 <h3 id="12-sequencing-data-how-to-get-it">1.2. Sequencing data: How to get it</h3>
 <p>We are going to access <strong>RNA-seq</strong> data from the project called <strong>&quot;Transcriptomic differences between virulence-attenuated and fully-virulent strains of <em>Listeria monocytogenes</em>&quot;</strong>, published some weeks ago (2019-07-16), that aims to compare the transcriptomic differences between virulence-attenuated and fully-virulent strains of <em>L. monocytogenes</em> under simulated food processing facility conditions. the study <strong><em>Listeria monocytogenes</em> sequencing under simulated food processing facility conditions.</strong>, which is publicy available in SRA (a bioinformatics database that provides a public repository for DNA sequencing data). <a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR9691134">SRA reference SRR9691134</a>.</p>
 <p>Our RNA sequencing (RNA-seq) data is stored in a pair of .fastq files (paired-end RNA-seq data <a href="https://systemsbiology.columbia.edu/genome-sequencing-defining-your-experiment">check differences between Single-end vs. paired-end reading</a>): these files are composed of millions of reads which were run on the <a href="https://www.illumina.com/documents/products/datasheets/datasheet_miseq.pdf">Illumina MiSeq</a> platform.</p>
@@ -447,8 +469,9 @@ mv ~/SAMPLES/V1701FE3T_S6_L001_R2_001.fastq.gz.1 ~/SAMPLES/lmonocytogenes_read2.
 <p>Once we have downloaded and stored in ~/SAMPLES/ our FASTQ R1 and R2 files, the FASTA whole genome reference sequence and GFF annotation file, we can run our analysis inside a Docker container.</p>
 <h3 id="21-first-steps-with-docker">2.1. First steps with Docker</h3>
 <p><a href="https://docs.docker.com/get-started/"><strong>Docker</strong></a> is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.</p>
-<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/></center>
-<center>All bioinformatics packages needed will be inside our container</center>
+<figure>
+<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/><figcaption>All bioinformatics packages needed will be inside our container</figcaption></center>
+</figure>
 <p>To use this tutorial, we are going to use an already constructed Docker image. This image contains inside the software required to properly run the analysis.</p>
 <p>Please, <strong>open a Linux terminal pressing ALT + t</strong> and type:</p>
 <pre class="hljs"><code><div>docker -v
@@ -472,9 +495,13 @@ RESULTS_DOCKER=/RESULTS
 <p>And finally running running the process in our isolated container:</p>
 <pre class="hljs"><code><div>docker run --rm  -v <span class="hljs-variable">$SAMPLES_LOCAL</span>:<span class="hljs-variable">$SAMPLES_DOCKER</span> -v <span class="hljs-variable">$RESULTS_LOCAL</span>:<span class="hljs-variable">$RESULTS_DOCKER</span> -it osvaldogc/ufv:2.0 /bin/bash
 </div></code></pre>
-<center><img src="images/docker_start.png" alt="drawing" width="500"/></center>
-<center>osvaldogc/ufv:2.0 initial screen</center>
-<h3 id="23-software-requisites">2.3. Software Requisites</h3>
+<figure>
+<center>
+<img src="images/docker_start.png" alt="drawing" width="500"/>
+<figcaption>osvaldogc/ufv:2.0 initial screen</figcaption>
+</center>
+</figure>
+### 2.3. Software Requisites
 <p>We are going to use the next software packages (already installed in our Docker image) to run the tutorial.
 Only if you don't want to perform your analysis with Docker image, follow this instructions:</p>
 <p>SOFTWARE DESCRIPTION</p>
@@ -491,8 +518,13 @@ fastqc /SAMPLES/lmonocytogenes_read2.fastq.gz -o /RESULTS -t 4
 </div></code></pre>
 <h3 id="32-analysis-of-fastqc-results">3.2. Analysis of FastQC results</h3>
 <p>Report analysis could be completely covered following the <a href="https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf">FastQC manual</a>. Therefore, checking our html and zip files with images and reports is going to give us an idea about the quality of the sequencing.</p>
-<center><img src="images/per_base_quality.png" alt="drawing" width="600"/></center>
-<center><i>lmonocytogenes_read1.fastq</i> quality per base</center>
+<figure>
+<center>
+<img src="images/per_base_quality.png" alt="drawing" width="600"/>
+<figcaption><i>lmonocytogenes_read1.fastq</i> quality per base
+</figcaption>
+</center>
+</figure>
 <p>The most common types of quality control and procedures are:</p>
 <ul>
 <li><strong>Per-base quality</strong>: Trim ends if quality too low.</li>
