@@ -53,13 +53,22 @@ We will take as reference the [*Listeria monocytogenes* EGD-e whole genome](http
 
 It is also important to select a [FASTA sequence](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.fna.gz) and a [GFF annotation file](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.gff.gz), from the reference genome of our organism. Available in [Genome](https://www.ncbi.nlm.nih.gov/genome/?term=Listeria+monocytogenes+EGD-e+genome).
 
+
+<figure>
+<center><img src="images/listeria_genome.jpg" alt="drawing" width="500"/><figcaption>Genomic locations in different genomes of <i>Listeria monocytogenes</i>. </figcaption></center>
+</figure>
+
+Figure from [Source](https://mbio.asm.org/content/5/2/e00969-14.long).
+
 ### 1.3. Downloading our samples
 
 First, please open a terminal session (ALT+t) and create a directory to put your samples and store your results:
 
 ```bash
-mkdir ~/SAMPLES
-mkdir ~/RESULTS
+mkdir -p ~/SAMPLES
+chmod a+rwx ~/SAMPLES
+mkdir -p ~/RESULTS
+chmod a+rwx ~/RESULTS
 ```
 
 We can download the RNA-seq data [here](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR9691134) or typing in a terminal:
@@ -69,7 +78,7 @@ wget -P ~/SAMPLES https://sra-pub-src-1.s3.amazonaws.com/SRR9691134/V1701FE3T_S6
 wget -P ~/SAMPLES https://sra-pub-src-1.s3.amazonaws.com/SRR9691134/V1701FE3T_S6_L001_R2_001.fastq.gz.1
 ```
 
-and both FASTA sequence and reference with:
+and both FASTA sequence and GFF annotation file with:
 
 ```bash
 wget -P ~/SAMPLES ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.gff.gz
@@ -91,6 +100,20 @@ mv ~/SAMPLES/GCF_000196035.1_ASM19603v1_genomic.gff ~/SAMPLES/lmonocytogenes_gen
 mv ~/SAMPLES/V1701FE3T_S6_L001_R1_001.fastq.gz.1 ~/SAMPLES/lmonocytogenes_read1.fastq.gz
 mv ~/SAMPLES/V1701FE3T_S6_L001_R2_001.fastq.gz.1 ~/SAMPLES/lmonocytogenes_read2.fastq.gz
 ```
+
+Visualizing our downloaded samples we should obtain:
+
+<figure>
+<center><img src="images/lmon_fasta.jpg" alt="drawing" width="500"/><figcaption>Output of <b>head ~/SAMPLES/lmonocytogenes_genome.fasta</b></figcaption></center>
+</figure>
+
+<figure>
+<center><img src="images/lmon_gff.jpg" alt="drawing" width="600"/><figcaption>Output of <b>head -n 10 ~/SAMPLES/lmonocytogenes_genome.gff</b></figcaption></center>
+</figure>
+
+<figure>
+<center><img src="images/lmon_fastq.jpg" alt="drawing" width="500"/><figcaption>Output of <b>zcat ~/SAMPLES/lmonocytogenes_read1.fastq.gz head -n 10</b></figcaption></center>
+</figure>
 
 ## 2. How to run this tutorial
 
@@ -145,6 +168,9 @@ And finally running running the process in our isolated container:
 ```bash
 docker run --rm  -v $SAMPLES_LOCAL:$SAMPLES_DOCKER -v $RESULTS_LOCAL:$RESULTS_DOCKER -it osvaldogc/ufv:2.0 /bin/bash
 ```
+
+*NOTE: with -v argument you are going to be able to interact locally with your Docker results in ~/SAMPLES and ~/RESULTS.*
+
 <figure>
 <center>
 <img src="images/docker_start.png" alt="drawing" width="500"/>
@@ -152,12 +178,17 @@ docker run --rm  -v $SAMPLES_LOCAL:$SAMPLES_DOCKER -v $RESULTS_LOCAL:$RESULTS_DO
 </center>
 </figure>
 
+And change our path to root:
+
+```bash
+cd ..
+```
+
 ### 2.3. Software Requisites
 
-We are going to use the next software packages (already installed in our Docker image) to run the tutorial.
-Only if you don't want to perform your analysis with Docker image, follow this instructions:
+Remember that all the packages required to run the analysis are already installed in our [Docker image](https://hub.docker.com/r/osvaldogc/ufv). 
 
-SOFTWARE DESCRIPTION
+Follow this [guide](https://github.com/fpozoc/advanced_bioinformatics/tree/master/handson/utils/local_installation.md) if you want to run your analysis locally.
 
 ## 3. Data preprocesing
 
@@ -285,7 +316,13 @@ And then, map our reads to *L. monocytogenes* reference, which result in a .SAM 
 bowtie2 -x /RESULTS/lmonocytogenes_genome -p 2 -1 /RESULTS/lmonocytogenes_read1_paired.fastq -2 /RESULTS/lmonocytogenes_read2_paired.fastq -S /RESULTS/lmonocytogenes_genome.sam
 ```
 
-SAM FILE DESCRIPTION
+<figure>
+<center>
+<img src="images/sam_format.jpg" alt="drawing" width="900", height="150"/>
+<figcaption>Output of <b>head -n 20 lmonocytogenes_genome.sam | less -S</b>
+</figcaption>
+</center>
+</figure>
 
 ### 4.2. Converting and sorting reads with Samtools
 
@@ -303,7 +340,7 @@ And converting our SAM file to BAM and sorting it. [Here](https://wikis.utexas.e
 
 ```bash
 samtools view -Su /RESULTS/lmonocytogenes_genome.sam > /RESULTS/lmonocytogenes_genome.bam
-samtools sort /RESULTS/lmonocytogenes_genome.bam /RESULTS/lmonocytogenes_genome_sortedls -l
+samtools sort /RESULTS/lmonocytogenes_genome.bam -o /RESULTS/lmonocytogenes_genome_sorted
 ```
 
 ## 5. Transcriptome Assembly with Stringtie
@@ -329,3 +366,17 @@ To run *stringtie* and finish our analysis, please type in your Docker terminal:
 ```bash
 stringtie /RESULTS/lmonocytogenes_genome_sorted.bam -G /SAMPLES/lmonocytogenes_genome.gff -o /RESULTS/stringtie_all_output.gtf -A /RESULTS/stringtie_cov_output.gtf
 ```
+
+And finally, explore your results with:
+
+```bash
+ls -lh
+```
+
+<figure>
+<center>
+<img src="images/final_results.jpg" alt="drawing" width="600"/>
+<figcaption>All results of the analysis
+</figcaption>
+</center>
+</figure>
