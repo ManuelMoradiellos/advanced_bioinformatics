@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes">Transcriptome Assembly: Case study of bacteria <em>Listeria monocytogenes</em></h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#setting-up">Setting up our working environment</a>
+1.1. <a href="#organism-of-interest">Organism of interest: <em>Listeria monocytogenes</em></a>
+1.2. <a href="#sequencing">Sequencing data: How to get it</a>
+1.3. <a href="#downloading">Downloading our samples</a></li>
+<li><a href="#how-to-run">How to run this tutorial</a>
+2.1. <a href="#first-steps">First steps with Docker</a>
+2.2. <a href="#configuring">Configuring our Docker container</a>
+2.3. <a href="#software-Requisites">Software Requisites</a></li>
+<li><a href="#data-preprocesing">Data preprocesing</a>
+3.1. <a href="#quality">Quality control with FastQC</a>
+3.2. <a href="#analysis">Analysis of FastQC results</a>
+3.3. <a href="#trimming">Trimming reads  with Trimmomatic</a></li>
+<li><a href="#read-mapping">Read mapping to a reference genome</a>
+4.1. <a href="#build-an-index-and-read-mapping-with-bowtie-2">Build an index and read mapping with Bowtie 2</a>
+4.2. <a href="#converting-and-sorting">Converting and sorting reads with Samtools</a>
+4.3. [Trimming reads  with Trimmomatic](#trimming reads)</li>
+<li><a href="#transcriptome-assembly">Transcriptome Assembly with Stringtie</a></li>
+</ol>
+<h2 id="1-setting-up-our-working-environment">1. Setting up our working environment</h2>
+<p><strong>DNA sequencing</strong> is the process of determining the nucleic acid sequence – the order of nucleotides in DNA. It includes any method or technology that is used to determine the order of the four bases: adenine, guanine, cytosine, and thymine. The advent of rapid DNA sequencing methods has greatly accelerated biological and medical research and discovery.</p>
+<p>The massively parallel sequencing technology known as <strong>next-generation sequencing (NGS)</strong> has revolutionized the biological sciences. With its ultra-high throughput, scalability, and speed, NGS enables researchers to perform a wide variety of applications and study biological systems at a level never before possible.</p>
+<h3 id="11-organism-of-interest-listeria-monocytogenes">1.1. Organism of interest: <em>Listeria monocytogenes</em></h3>
+<p>For this tutorial, we are going to use data of RNA sequencing from bacteria <a href="https://www.ncbi.nlm.nih.gov/genome/?term=Listeria+monocytogenes+EGD-e+genome"><em>Listeria monocytogenes</em></a>, a food-borne pathogen responsible for listerioris, a sickness with a high mortality rate, which recently leads an <a href="https://www.forbes.com/sites/anagarciavaldivia/2019/08/23/health-alert-in-spain-listeriosis-outbreak-affects-168-people/#25662d682680">outbreak</a> in Spain.</p>
+<p>The genome sequences of several Listeria species have opened a new era in the study of Listeria. These postgenomic studies, comparing pathogenic strains of <em>L. monocytogenes</em>, have led to the discovery of new virulence factors. Postgenomic studies have also helped us to understand how Listeria survives in a variety of different environments.</p>
+<center><img src="images/listeria.jpg" alt="drawing" width="500"/></center>
+<center><i>L. monocytogenes</i> is one of the most virulent foodborne pathogens</center>
+<h3 id="12-sequencing-data-how-to-get-it">1.2. Sequencing data: How to get it</h3>
+<p>We are going to access <strong>RNA-seq</strong> data from the project called <strong>&quot;Transcriptomic differences between virulence-attenuated and fully-virulent strains of <em>Listeria monocytogenes</em>&quot;</strong>, published some weeks ago (2019-07-16), that aims to compare the transcriptomic differences between virulence-attenuated and fully-virulent strains of <em>L. monocytogenes</em> under simulated food processing facility conditions. the study <strong><em>Listeria monocytogenes</em> sequencing under simulated food processing facility conditions.</strong>, which is publicy available in SRA (a bioinformatics database that provides a public repository for DNA sequencing data). <a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR9691134">SRA reference SRR9691134</a>.</p>
+<p>Our RNA sequencing (RNA-seq) data is stored in a pair of .fastq files (paired-end RNA-seq data <a href="https://systemsbiology.columbia.edu/genome-sequencing-defining-your-experiment">check differences between Single-end vs. paired-end reading</a>): these files are composed of millions of reads which were run on the <a href="https://www.illumina.com/documents/products/datasheets/datasheet_miseq.pdf">Illumina MiSeq</a> platform.</p>
+<p>We will take as reference the <a href="https://www.ncbi.nlm.nih.gov/genome/159?genome_assembly_id=159660"><em>Listeria monocytogenes</em> EGD-e whole genome</a>. As <em>L. monocytogenes</em> is a well-studied organism, we will assume that the reference genome and assembly are mostly correct and complete.</p>
+<p>It is also important to select a <a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.fna.gz">FASTA sequence</a> and a <a href="ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.gff.gz">GFF annotation file</a>, from the reference genome of our organism. Available in <a href="https://www.ncbi.nlm.nih.gov/genome/?term=Listeria+monocytogenes+EGD-e+genome">Genome</a>.</p>
+<p>DESCRIBIR FORMATO FASTQ, FASTA Y GTF</p>
+<h3 id="13-downloading-our-samples">1.3. Downloading our samples</h3>
+<p>First, please open a terminal session (ALT+t) and create a directory to put your samples and store your results:</p>
+<pre class="hljs"><code><div>mkdir ~/SAMPLES
+mkdir ~/RESULTS
+</div></code></pre>
+<p>We can download the RNA-seq data <a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR9691134">here</a> or typing in a terminal:</p>
+<pre class="hljs"><code><div>wget -P ~/SAMPLES https://sra-pub-src-1.s3.amazonaws.com/SRR9691134/V1701FE3T_S6_L001_R1_001.fastq.gz.1
+wget -P ~/SAMPLES https://sra-pub-src-1.s3.amazonaws.com/SRR9691134/V1701FE3T_S6_L001_R2_001.fastq.gz.1
+</div></code></pre>
+<p>and both FASTA sequence and reference with:</p>
+<pre class="hljs"><code><div>wget -P ~/SAMPLES ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.gff.gz
+wget -P ~/SAMPLES ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.fna.gz
+</div></code></pre>
+<p>uncompressing:</p>
+<pre class="hljs"><code><div>gunzip ~/SAMPLES/GCF_000196035.1_ASM19603v1_genomic.gff.gz
+gunzip ~/SAMPLES/GCF_000196035.1_ASM19603v1_genomic.fna.gz
+</div></code></pre>
+<p>and finally renaming files:</p>
+<pre class="hljs"><code><div>mv ~/SAMPLES/GCF_000196035.1_ASM19603v1_genomic.fna ~/SAMPLES/lmonocytogenes_genome.fasta
+mv ~/SAMPLES/GCF_000196035.1_ASM19603v1_genomic.gff ~/SAMPLES/lmonocytogenes_genome.gff
+mv ~/SAMPLES/V1701FE3T_S6_L001_R1_001.fastq.gz.1 ~/SAMPLES/lmonocytogenes_read1.fastq.gz
+mv ~/SAMPLES/V1701FE3T_S6_L001_R2_001.fastq.gz.1 ~/SAMPLES/lmonocytogenes_read2.fastq.gz
+</div></code></pre>
+<h2 id="2-how-to-run-this-tutorial">2. How to run this tutorial</h2>
+<p>Once we have downloaded and stored in ~/SAMPLES/ our FASTQ R1 and R2 files, the FASTA whole genome reference sequence and GFF annotation file, we can run our analysis inside a Docker container.</p>
+<h3 id="21-first-steps-with-docker">2.1. First steps with Docker</h3>
+<p><a href="https://docs.docker.com/get-started/"><strong>Docker</strong></a> is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.</p>
+<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/></center>
+<center>All bioinformatics packages needed will be inside our container</center>
+<p>To use this tutorial, we are going to use an already constructed Docker image. This image contains inside the software required to properly run the analysis.</p>
+<p>Please, <strong>open a Linux terminal pressing ALT + t</strong> and type:</p>
+<pre class="hljs"><code><div>docker -v
+</div></code></pre>
+<p>to check if you have installed Docker in your Linux OS.</p>
+<p>Otherwise, you can visit the <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Docker installation guide</a> to install it locally in your computer.
+<em>Remember that if your don't have administrator privileges you won't be able to install Docker</em>.</p>
+<p>The image we are going to use can be pulled from <a href="https://hub.docker.com/r/osvaldogc/ufv">dockerhub</a>. To get the last image to create our Docker container type in terminal and run:</p>
+<pre class="hljs"><code><div>docker pull osvaldogc/ufv:2.0
+</div></code></pre>
+<p>Once it has finished, you can list all top level images, their repository and tags, and their size with:</p>
+<pre class="hljs"><code><div>docker images
+</div></code></pre>
+<h3 id="22-configuring-our-docker-container">2.2. Configuring our Docker container</h3>
+<p>With our image already stored in or computer, we are going to declare our variables to define where will be our local and docker folders.</p>
+<pre class="hljs"><code><div>SAMPLES_LOCAL=~/SAMPLES
+SAMPLES_DOCKER=/SAMPLES
+RESULTS_LOCAL=~/RESULTS
+RESULTS_DOCKER=/RESULTS
+</div></code></pre>
+<p>And finally running running the process in our isolated container:</p>
+<pre class="hljs"><code><div>docker run --rm  -v <span class="hljs-variable">$SAMPLES_LOCAL</span>:<span class="hljs-variable">$SAMPLES_DOCKER</span> -v <span class="hljs-variable">$RESULTS_LOCAL</span>:<span class="hljs-variable">$RESULTS_DOCKER</span> -it osvaldogc/ufv:2.0 /bin/bash
+</div></code></pre>
+<center><img src="images/docker_start.png" alt="drawing" width="500"/></center>
+<center>osvaldogc/ufv:2.0 initial screen</center>
+<h3 id="23-software-requisites">2.3. Software Requisites</h3>
+<p>We are going to use the next software packages (already installed in our Docker image) to run the tutorial.
+Only if you don't want to perform your analysis with Docker image, follow this instructions:</p>
+<p>SOFTWARE DESCRIPTION</p>
+<h2 id="3-data-preprocesing">3. Data preprocesing</h2>
+<p>Data from HTS platforms can contain <strong>adapters</strong> and a variety of <strong>experimental artifacts</strong> and <strong>low-quality data</strong>, so data preprocessing and quality control are neccesary.</p>
+<h3 id="31-quality-control-with-fastqc">3.1. Quality control with FastQC</h3>
+<p>FastQC, written by Simon Andrews of Babraham Bioinformatics, is a program designed to spot potential problems in HTS datasets. It runs a set of analyses on one or more raw sequence files in fastq or bam format and produces a report which summarises the results.</p>
+<p><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/"><em>Andrews S. (2010). FastQC: a quality control tool for high throughput sequence data.</em></a></p>
+<p>Modern high throughput sequencers can generate tens of millions of sequences in a single run. Before analysing this sequence to draw biological conclusions you should always perform some simple quality control checks to ensure that the raw data looks good and there are no problems or biases in your data which may affect how you can usefully use it.</p>
+<p>A report with basic statistics, sequence quality, sequence content scores, GC content scores, N content per base, duplication levels, overrepresented sequences, adapter content or kmer content will be given by the software.</p>
+<p>To run the initial analysis, please run (<em>input, output and number of threads are the arguments below</em>):</p>
+<pre class="hljs"><code><div>fastqc /SAMPLES/lmonocytogenes_read1.fastq.gz -o /RESULTS -t 4
+fastqc /SAMPLES/lmonocytogenes_read2.fastq.gz -o /RESULTS -t 4
+</div></code></pre>
+<h3 id="32-analysis-of-fastqc-results">3.2. Analysis of FastQC results</h3>
+<p>Report analysis could be completely covered following the <a href="https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf">FastQC manual</a>. Therefore, checking our html and zip files with images and reports is going to give us an idea about the quality of the sequencing.</p>
+<center><img src="images/per_base_quality.png" alt="drawing" width="600"/></center>
+<center><i>lmonocytogenes_read1.fastq</i> quality per base</center>
+<p>The most common types of quality control and procedures are:</p>
+<ul>
+<li><strong>Per-base quality</strong>: Trim ends if quality too low.</li>
+<li><strong>Per sequence quality</strong>: Average quality score should be well above 25-30, otherwise experiment may need to be repeated.</li>
+<li><strong>Sequence duplication levels</strong>: A large number of identical sequence may indicate duplication by PCR during library preparation, this can bias estimates of mRNA expression and is often filtered out.</li>
+<li><strong>Overrepresented sequences</strong>: Sometimes adapter sequences are represented in final sequences and these need to be filtered out before analysis.</li>
+</ul>
+<p>This view shows an overview of the range of quality values across all bases at each position in the FastQ file. The quality seems to be enough to continue the analysis (the scope of this tutorial is not shown an extensive analysis of this step), but above we have shown that QC could be optimize following these procedures.</p>
+<h3 id="33-trimming-reads-with-trimmomatic">3.3. Trimming reads  with Trimmomatic</h3>
+<p>Trimmomatic is an efficient preprocessing tool, which could correctly handle paired-end data, that can be used to trim and crop Illumina (FASTQ) data as well as to remove adapters.</p>
+<p><em>Bolger AM, Lohse M, Usadel B. <a href="https://academic.oup.com/bioinformatics/article/30/15/2114/2390096">Trimmomatic: a flexible trimmer for Illumina sequence data</a>. Bioinformatics. 2014;30(15):2114–2120. doi: 10.1093/bioinformatics/btu170</em>.</p>
+<p>NGS sequencing typically results in millions of reads. A proportion of these reads will contain <strong>artifacts</strong> or <strong>low-quality</strong> bases which we would like to <strong>remove</strong> before starting our analyses.</p>
+<p>Trimmomatic performs a variety of useful trimming tasks for Illumina Paired-End (and also Single-End) data. The selection of trimming steps and their associated parameters are supplied on the command line.</p>
+<p><em>NOTE</em>: If you want to know which adaptors are in your data, the easiest is probably to ask lab person that generated the data. What you will usually observe with Illumina is indexed adaptor at the beginning of your F reads (plus sometimes some fake polyA stretches) and universal adaptor at the end of your R reads. I would recommend reading pages 5 and 6 in Trimmomatic <a href="http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf">user guide</a> to know more about which types of adaptors could be in your data.</p>
+<p>As we don't know with detail how the experiment was performed, For this tutorial, we are going to use one indexed and one universal adaptor, only as a toy sample, in order to show how to trim adaptors with Trimmomatic.</p>
+<p>To automatically create a file with the content below, please type in the terminal:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">printf</span> <span class="hljs-string">"&gt;PrefixAdapter7/1
+GATCGGAAGAGCACACGTCTGAACTCCAGTCACCAGATCATCTCGTATGCCGTCTTCTGCTTG
+&gt;PrefixUniversal/2
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT"</span>
+&gt; /SAMPLES/illumina_adapter.fasta
+</div></code></pre>
+<p>We are going to use the next arguments to run our analysis:</p>
+<ul>
+<li>ILLUMINACLIP: Cut adapter and other illumina-specific sequences from the read.</li>
+<li>SLIDINGWINDOW: Performs a sliding window trimming approach. It starts. Scanning at the 5' end and clips the read once the average quality within the window falls below a threshold.</li>
+<li>LEADING: Cut bases off the start of a read, if below a threshold quality-</li>
+<li>TRAILING: Cut bases off the end of a read, if below a threshold quality-</li>
+<li>MINLEN: Drop the read if it is below a specified length-</li>
+</ul>
+<p>And run Trimmomatic with the command:</p>
+<pre class="hljs"><code><div>java -jar /SOFTWARE/trimmomatic/bin/trimmomatic.jar PE -phred33 \
+/SAMPLES/lmonocytogenes_read1.fastq.gz \
+/SAMPLES/lmonocytogenes_read2.fastq.gz \
+/RESULTS/lmonocytogenes_read1_paired.fastq \
+/RESULTS/lmonocytogenes_read1_unpaired.fastq \
+/RESULTS/lmonocytogenes_read2_paired.fastq \
+/RESULTS/lmonocytogenes_read2_unpaired.fastq \
+ILLUMINACLIP:/SAMPLES/illumina_adapter.fasta:2:33:20:2:<span class="hljs-literal">true</span> \
+LEADING:36 \
+TRAILING:32 \
+SLIDINGWINDOW:4:30 \
+MINLEN:3
+</div></code></pre>
+<p>Again, we can then run the FastQC analysis again to see if we have fixed some things we saw previously.</p>
+<pre class="hljs"><code><div>fastqc /RESULTS/lmonocytogenes_read1_paired.fastq -o /RESULTS -t 4
+fastqc /RESULTS/lmonocytogenes_read2_paired.fastq -o /RESULTS -t 4
+</div></code></pre>
+<h2 id="4-read-mapping-to-a-reference-genome">4. Read mapping to a reference genome</h2>
+<p>After we check to make sure that our raw reads are OK, we are going to construct our index and map the reads to our reference genome with Bowtie2.</p>
+<h3 id="41-build-an-index-and-read-mapping-with-bowtie-2">4.1. Build an index and read mapping with Bowtie 2</h3>
+<p><strong>Bowtie 2</strong> is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences. It is particularly good at aligning reads of about 50 up to 100s or 1,000s of characters. Bowtie 2 indexes the genome with an <a href="https://en.wikipedia.org/wiki/FM-index">FM Index</a>. Bowtie2 supports gapped, local, and paired-end alignment modes.</p>
+<p>Langmead B, Salzberg S. <a href="https://www.nature.com/articles/nmeth.1923"><em>Fast gapped-read alignment with Bowtie 2</em></a>. Nature Methods. 2012, 9:357-359.</p>
+<p>We create a Bowtie 2 index in order to map efficiently million of reads to the reference FASTA sequence:</p>
+<pre class="hljs"><code><div>bowtie2-build /SAMPLES/lmonocytogenes_genome.fasta /RESULTS/lmonocytogenes_genome
+</div></code></pre>
+<p>Once we have built the index, we have to tell Bowtie 2 where to find these index files:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">export</span> BOWTIE2_INDEXES=/RESULTS
+</div></code></pre>
+<p>And then, map our reads to <em>L. monocytogenes</em> reference, which result in a .SAM file.</p>
+<pre class="hljs"><code><div>bowtie2 -x /RESULTS/lmonocytogenes_genome -p 2 -1 /RESULTS/lmonocytogenes_read1_paired.fastq -2 /RESULTS/lmonocytogenes_read2_paired.fastq -S /RESULTS/lmonocytogenes_genome.sam
+</div></code></pre>
+<p>SAM FILE DESCRIPTION</p>
+<h3 id="42-converting-and-sorting-reads-with-samtools">4.2. Converting and sorting reads with Samtools</h3>
+<p><a href="http://www.htslib.org/">Samtools</a> is a suite of programs for interacting with high-throughput sequencing data. With Samtools we are going to be able to perform some operations like reading, writing/editing, indexing, viewing SAM/BAM/CRAM format files.</p>
+<p>In our Docker container, there are 2 different versions of Samtools. We have to use Samtools 1.9, and therefore, we have to export the right path to our environment with:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">export</span> PATH=/SOFTWARE/samtools-1.9:<span class="hljs-variable">$PATH</span>
+</div></code></pre>
+<p>And converting our SAM file to BAM and sorting it. <a href="https://wikis.utexas.edu/display/CoreNGSTools/Samtools%3A+viewing%2C+counting+and+sorting+your+alignment+data">Here</a> you can find a nice explanation of the objective of convert and sort your alignment data.</p>
+<pre class="hljs"><code><div>samtools view -Su /RESULTS/lmonocytogenes_genome.sam &gt; /RESULTS/lmonocytogenes_genome.bam
+samtools sort /RESULTS/lmonocytogenes_genome.bam /RESULTS/lmonocytogenes_genome_sortedls -l
+</div></code></pre>
+<h2 id="5-transcriptome-assembly-with-stringtie">5. Transcriptome Assembly with Stringtie</h2>
+<pre class="hljs"><code><div>stringtie /RESULTS/lmonocytogenes_genome_sorted.bam -G /SAMPLES/lmonocytogenes_genome.gff -o /RESULTS/stringtie_all_output.gtf -A /RESULTS/stringtie_cov_output.gtf
+</div></code></pre>
+
+</body>
+</html>
