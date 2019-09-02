@@ -18,6 +18,13 @@
     - [4.2. Converting and sorting reads with Samtools](#42-converting-and-sorting-reads-with-samtools)
   - [5. Transcriptome Assembly with Stringtie](#5-transcriptome-assembly-with-stringtie)
 
+---
+**Note**
+
+All the links are [clickable](https://github.com/fpozoc/advanced_bioinformatics/tree/master/handson#transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes). They contain references, databases and interesting sources to know more about our pipeline.
+
+---
+
 ## 1. Setting up our working environment
 
 **DNA sequencing** is the process of determining the nucleic acid sequence – the order of nucleotides in DNA. It includes any method or technology that is used to determine the order of the four bases: adenine, guanine, cytosine, and thymine. The advent of rapid DNA sequencing methods has greatly accelerated biological and medical research and discovery.
