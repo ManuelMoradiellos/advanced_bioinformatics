@@ -124,10 +124,10 @@ Once we have downloaded and stored in ~/SAMPLES/ our FASTQ R1 and R2 files, the 
 [**Docker**](https://docs.docker.com/get-started/) is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.
 
 <figure>
-<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/><figcaption>All bioinformatics packages required to run the pipeline will be inside our Docker container</figcaption></center>
+<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/><figcaption>All bioinformatics packages required to run the pipeline will be inside our Docker container.</figcaption></center>
 </figure>
 
-To use this tutorial, we are going to use an already constructed Docker image. This image contains inside the software required to properly run the analysis.
+To use this tutorial, we are going to use an already constructed Docker image; this image contains inside the software required to properly run the analysis.
 
 Please, **open a Linux terminal pressing ALT + t** and type:
 
@@ -230,7 +230,7 @@ The most common types of quality control and procedures are:
 - **Sequence duplication levels**: A large number of identical sequence may indicate duplication by PCR during library preparation, this can bias estimates of mRNA expression and is often filtered out.
 - **Overrepresented sequences**: Sometimes adapter sequences are represented in final sequences and these need to be filtered out before analysis.
 
-This view shows an overview of the range of quality values across all bases at each position in the FastQ file. The quality seems to be enough to continue the analysis (the scope of this tutorial is not shown an extensive analysis of this step), but above we have shown that QC could be optimize following these procedures.
+This view shows an overview of the range of quality values across all bases at each position in the FastQ file. The quality seems to be enough to continue the analysis (the scope of this tutorial doesn't show an extensive analysis of this step), but above we have shown that QC could be optimize following these procedures.
 
 ### 3.3. Trimming reads  with Trimmomatic
 
@@ -242,9 +242,9 @@ NGS sequencing typically results in millions of reads. A proportion of these rea
 
 Trimmomatic performs a variety of useful trimming tasks for Illumina Paired-End (and also Single-End) data. The selection of trimming steps and their associated parameters are supplied on the command line.
 
-*NOTE*: If you want to know which adaptors are in your data, the easiest is probably to ask lab person that generated the data. What you will usually observe with Illumina is indexed adaptor at the beginning of your F reads (plus sometimes some fake polyA stretches) and universal adaptor at the end of your R reads. I would recommend reading pages 5 and 6 in Trimmomatic [user guide](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf) to know more about which types of adaptors could be in your data.
+*NOTE*: If you want to know which adaptors are in your data, the easiest is probably to ask the scientist that generated the data. What you will usually observe with Illumina is an indexed adaptor at the beginning of your F reads (plus sometimes some fake polyA stretches) and universal adaptor at the end of your R reads. I would recommend reading pages 5 and 6 in Trimmomatic [user guide](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf) to know more about which types of adaptors could be in your data.
 
-As we don't know with detail how the experiment was performed, For this tutorial, we are going to use one indexed and one universal adaptor, only as a toy sample, in order to show how to trim adaptors with Trimmomatic.
+As we don't know in detail how the experiment was performed, for this tutorial, we are going to use one indexed and one universal adaptor, only as a toy sample, in order to show how to trim adaptors with Trimmomatic.
 
 To automatically create a file with the content below, please type in the terminal:
 
@@ -290,7 +290,7 @@ fastqc /RESULTS/lmonocytogenes_read2_paired.fastq -o /RESULTS -t 4
 
 ## 4. Read mapping to a reference genome
 
-After we check to make sure that our raw reads are OK, we are going to construct our index and map the reads to our reference genome with Bowtie2.
+After we check to make sure that our raw reads are OK, we are going to construct our index and next we will map the reads to our reference genome with Bowtie2.
 
 ### 4.1. Build an index and read mapping with Bowtie 2
 
