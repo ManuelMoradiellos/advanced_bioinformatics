@@ -1,9 +1,6 @@
 # Transcriptome Assembly: Case study of bacteria *Listeria monocytogenes*
 
-## Table of Contents
-
 - [Transcriptome Assembly: Case study of bacteria *Listeria monocytogenes*](#transcriptome-assembly-case-study-of-bacteria-listeria-monocytogenes)
-  - [Table of Contents](#table-of-contents)
   - [1. Setting up our working environment](#1-setting-up-our-working-environment)
     - [1.1. Organism of interest: *Listeria monocytogenes*](#11-organism-of-interest-listeria-monocytogenes)
     - [1.2. Sequencing data: How to get it](#12-sequencing-data-how-to-get-it)
@@ -32,8 +29,12 @@ The massively parallel sequencing technology known as **next-generation sequenci
 For this tutorial, we are going to use data of RNA sequencing from bacteria [*Listeria monocytogenes*](https://www.ncbi.nlm.nih.gov/genome/?term=Listeria+monocytogenes+EGD-e+genome), a food-borne pathogen responsible for listerioris, a sickness with a high mortality rate, which recently leads an [outbreak](https://www.forbes.com/sites/anagarciavaldivia/2019/08/23/health-alert-in-spain-listeriosis-outbreak-affects-168-people/#25662d682680) in Spain.
 
 The genome sequences of several Listeria species have opened a new era in the study of Listeria. These postgenomic studies, comparing pathogenic strains of *L. monocytogenes*, have led to the discovery of new virulence factors. Postgenomic studies have also helped us to understand how Listeria survives in a variety of different environments.
-<center><img src="images/listeria.jpg" alt="drawing" width="500"/></center>
-<center><i>L. monocytogenes</i> is one of the most virulent foodborne pathogens</center>
+<figure>
+<center>
+<img src="images/listeria.jpg" alt="drawing" width="500"/>
+<figcaption><i>L. monocytogenes</i> is one of the most virulent foodborne pathogens</figcaption>
+</center>
+</figure>
 
 ### 1.2. Sequencing data: How to get it
 
@@ -94,8 +95,9 @@ Once we have downloaded and stored in ~/SAMPLES/ our FASTQ R1 and R2 files, the 
 
 [**Docker**](https://docs.docker.com/get-started/) is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.
 
-<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/></center>
-<center>All bioinformatics packages needed will be inside our container</center>
+<figure>
+<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/><figcaption>All bioinformatics packages needed will be inside our container</figcaption></center>
+</figure>
 
 To use this tutorial, we are going to use an already constructed Docker image. This image contains inside the software required to properly run the analysis.
 
@@ -138,10 +140,12 @@ And finally running running the process in our isolated container:
 ```bash
 docker run --rm  -v $SAMPLES_LOCAL:$SAMPLES_DOCKER -v $RESULTS_LOCAL:$RESULTS_DOCKER -it osvaldogc/ufv:2.0 /bin/bash
 ```
-
-<center><img src="images/docker_start.png" alt="drawing" width="500"/></center>
-<center>osvaldogc/ufv:2.0 initial screen</center>
-
+<figure>
+<center>
+<img src="images/docker_start.png" alt="drawing" width="500"/>
+<figcaption>osvaldogc/ufv:2.0 initial screen</figcaption>
+</center>
+</figure>
 ### 2.3. Software Requisites
 
 We are going to use the next software packages (already installed in our Docker image) to run the tutorial.
@@ -174,8 +178,13 @@ fastqc /SAMPLES/lmonocytogenes_read2.fastq.gz -o /RESULTS -t 4
 
 Report analysis could be completely covered following the [FastQC manual](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf). Therefore, checking our html and zip files with images and reports is going to give us an idea about the quality of the sequencing.
 
-<center><img src="images/per_base_quality.png" alt="drawing" width="600"/></center>
-<center><i>lmonocytogenes_read1.fastq</i> quality per base</center>
+<figure>
+<center>
+<img src="images/per_base_quality.png" alt="drawing" width="600"/>
+<figcaption><i>lmonocytogenes_read1.fastq</i> quality per base
+</figcaption>
+</center>
+</figure>
 
 The most common types of quality control and procedures are:
 
