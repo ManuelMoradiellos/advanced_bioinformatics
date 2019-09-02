@@ -53,8 +53,6 @@ We will take as reference the [*Listeria monocytogenes* EGD-e whole genome](http
 
 It is also important to select a [FASTA sequence](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.fna.gz) and a [GFF annotation file](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/196/035/GCF_000196035.1_ASM19603v1/GCF_000196035.1_ASM19603v1_genomic.gff.gz), from the reference genome of our organism. Available in [Genome](https://www.ncbi.nlm.nih.gov/genome/?term=Listeria+monocytogenes+EGD-e+genome).
 
-DESCRIBIR FORMATO FASTQ, FASTA Y GTF
-
 ### 1.3. Downloading our samples
 
 First, please open a terminal session (ALT+t) and create a directory to put your samples and store your results:
@@ -169,7 +167,7 @@ Data from HTS platforms can contain **adapters** and a variety of **experimental
 
 FastQC, written by Simon Andrews of Babraham Bioinformatics, is a program designed to spot potential problems in HTS datasets. It runs a set of analyses on one or more raw sequence files in fastq or bam format and produces a report which summarises the results.
 
-[*Andrews S. (2010). FastQC: a quality control tool for high throughput sequence data.*](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+Andrews S. (2010). [*FastQC: a quality control tool for high throughput sequence data.*](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) Bioinformatics.
 
 Modern high throughput sequencers can generate tens of millions of sequences in a single run. Before analysing this sequence to draw biological conclusions you should always perform some simple quality control checks to ensure that the raw data looks good and there are no problems or biases in your data which may affect how you can usefully use it.
 
@@ -207,7 +205,7 @@ This view shows an overview of the range of quality values across all bases at e
 
 Trimmomatic is an efficient preprocessing tool, which could correctly handle paired-end data, that can be used to trim and crop Illumina (FASTQ) data as well as to remove adapters.
 
-*Bolger AM, Lohse M, Usadel B. [Trimmomatic: a flexible trimmer for Illumina sequence data](https://academic.oup.com/bioinformatics/article/30/15/2114/2390096). Bioinformatics. 2014;30(15):2114–2120. doi: 10.1093/bioinformatics/btu170*.
+Bolger AM, Lohse M, Usadel B. (2014) [*Trimmomatic: a flexible trimmer for Illumina sequence data*](https://academic.oup.com/bioinformatics/article/30/15/2114/2390096). Bioinformatics.
 
 NGS sequencing typically results in millions of reads. A proportion of these reads will contain **artifacts** or **low-quality** bases which we would like to **remove** before starting our analyses.
 
@@ -267,7 +265,7 @@ After we check to make sure that our raw reads are OK, we are going to construct
 
 **Bowtie 2** is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences. It is particularly good at aligning reads of about 50 up to 100s or 1,000s of characters. Bowtie 2 indexes the genome with an [FM Index](https://en.wikipedia.org/wiki/FM-index). Bowtie2 supports gapped, local, and paired-end alignment modes.
 
-Langmead B, Salzberg S. [*Fast gapped-read alignment with Bowtie 2*](https://www.nature.com/articles/nmeth.1923). Nature Methods. 2012, 9:357-359.
+Langmead B, Salzberg S. (2012) [*Fast gapped-read alignment with Bowtie 2*](https://www.nature.com/articles/nmeth.1923). Nature Methods
 
 We create a Bowtie 2 index in order to map efficiently million of reads to the reference FASTA sequence:
 
@@ -293,6 +291,8 @@ SAM FILE DESCRIPTION
 
 [Samtools](http://www.htslib.org/) is a suite of programs for interacting with high-throughput sequencing data. With Samtools we are going to be able to perform some operations like reading, writing/editing, indexing, viewing SAM/BAM/CRAM format files.
 
+Li H, Durbin R. (2009) [The Sequence Alignment/Map format and SAMtools](https://academic.oup.com/bioinformatics/article/25/16/2078/204688). Bioinformatics.
+
 In our Docker container, there are 2 different versions of Samtools. We have to use Samtools 1.9, and therefore, we have to export the right path to our environment with:
 
 ```bash
@@ -307,6 +307,24 @@ samtools sort /RESULTS/lmonocytogenes_genome.bam /RESULTS/lmonocytogenes_genome_
 ```
 
 ## 5. Transcriptome Assembly with Stringtie
+
+[**StringTie**](https://github.com/gpertea/stringtie) is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts.
+
+Pertea M, Salzberg S. (2015) [*StringTie enables improved reconstruction of a transcriptome from RNA-seq reads.*](https://www.nature.com/articles/nbt.3122) Nature Biotechnology
+
+The main **input** of the program is a SAMTools BAM file with RNA-Seq mappings sorted by genomic location
+
+The main **output** of the program is a GTF file containing the structural definitions of the transcripts assembled by StringTie from the read alignment data. 
+
+<figure>
+<center>
+<img src="images/stringtie.jpg" alt="drawing" width="600"/>
+<figcaption>Overview of the flow of the StringTie algorithm
+</figcaption>
+</center>
+</figure>
+
+To run *stringtie* and finish our analysis, please type in your Docker terminal:
 
 ```bash
 stringtie /RESULTS/lmonocytogenes_genome_sorted.bam -G /SAMPLES/lmonocytogenes_genome.gff -o /RESULTS/stringtie_all_output.gtf -A /RESULTS/stringtie_cov_output.gtf

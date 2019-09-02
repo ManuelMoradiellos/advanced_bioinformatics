@@ -8,7 +8,7 @@
 * [Author](#author)
 * [Contributing](#contributing)
 
-## Run your Docker Image
+## Run our Docker Image
 
 * [osvaldogc/ufv:2.0](https://hub.docker.com/r/osvaldogc/ufv/): Docker image with `Hands On` packages already installed.
 Images can be pulled via `docker pull osvaldogc/ufv:2.0`. Detailed instructions [here](https://github.com/fpozoc/advanced_bioinformatics/blob/master/handson/lmonocytogenes_transcriptome_assembly.md#21-first-steps-with-docker).
@@ -23,7 +23,7 @@ Follow this [guide](https://github.com/fpozoc/advanced_bioinformatics/tree/maste
 
 Fernando Pozo – [@fpozoca](https://twitter.com/fpozoca) – fpozoc@cnio.es
 
-[Bioinformatics Unit](https://bioinformatics.cnio.es/) - [@BU_CNIO](https://twitter.com/BU_CNIO)
+[Bioinformatics Unit](https://bioinformatics.cnio.es/staff/fpozoc/) - [@BU_CNIO](https://twitter.com/BU_CNIO)
 [Spanish National Cancer Research Centre (CNIO)](https://www.cnio.es/)
 
 Distributed under the GNU General Public License. See ``LICENSE`` for more information.
