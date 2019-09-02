@@ -62,7 +62,7 @@ Figure from [Source](https://mbio.asm.org/content/5/2/e00969-14.long).
 
 ### 1.3. Downloading our samples
 
-First, please open a terminal session (ALT+t) and create a directory to put your samples and store your results:
+First, please open a terminal session (ALT+t) and create a directory to put the samples and store the results, and giving permissions (r:read, w:write, x:execute):
 
 ```bash
 mkdir -p ~/SAMPLES
@@ -124,7 +124,7 @@ Once we have downloaded and stored in ~/SAMPLES/ our FASTQ R1 and R2 files, the 
 [**Docker**](https://docs.docker.com/get-started/) is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.
 
 <figure>
-<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/><figcaption>All bioinformatics packages needed will be inside our container</figcaption></center>
+<center><img src="images/docker_welcome-board.png" alt="drawing" width="500"/><figcaption>All bioinformatics packages required to run the pipeline will be inside our Docker container</figcaption></center>
 </figure>
 
 To use this tutorial, we are going to use an already constructed Docker image. This image contains inside the software required to properly run the analysis.
@@ -340,7 +340,7 @@ And converting our SAM file to BAM and sorting it. [Here](https://wikis.utexas.e
 
 ```bash
 samtools view -Su /RESULTS/lmonocytogenes_genome.sam > /RESULTS/lmonocytogenes_genome.bam
-samtools sort /RESULTS/lmonocytogenes_genome.bam -o /RESULTS/lmonocytogenes_genome_sorted
+samtools sort /RESULTS/lmonocytogenes_genome.bam -o /RESULTS/lmonocytogenes_genome_sorted.bam
 ```
 
 ## 5. Transcriptome Assembly with Stringtie
@@ -376,7 +376,7 @@ ls -lh
 <figure>
 <center>
 <img src="images/final_results.jpg" alt="drawing" width="600"/>
-<figcaption>All results of the analysis
+<figcaption>Results of our hands-on
 </figcaption>
 </center>
 </figure>
